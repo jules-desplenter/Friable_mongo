@@ -1,6 +1,7 @@
-using Fraible_presentation_api.Repository;
 using Friable_mongo.Models;
 using Friable_mongo.Services;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,13 @@ builder.Services.Configure<FriableDatabaseSettings>(
 builder.Services.AddSingleton<ManifestService>();
 builder.Services.AddSingleton<CollectionService>();
 builder.Services.AddTransient<IAzureStorage,AzureStorage>();
+builder.Services.AddTransient<IRegistrationRepository,RegistrationRepository>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+
+builder.Services.AddAutoMapper(typeof(AutoMappingConfig));
+
 
 builder.Services.AddControllers().AddJsonOptions(
         options => {  options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull; });

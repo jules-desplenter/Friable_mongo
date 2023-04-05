@@ -1,17 +1,16 @@
 ﻿using Azure.Storage.Blobs.Models;
 using Azure.Storage.Blobs;
-using Fraible_presentation_api.Models.DTO;
 using Azure;
-using System.Reflection.Metadata;
+using Friable_mongo.BlobModels;
 
-namespace Fraible_presentation_api.Repository
+namespace Friable_mongo.Services
 {
     public class AzureStorage : IAzureStorage
     {
         #region Dependency Injection / Constructor
 
-        private readonly string _storageConnectionString;
-        private readonly string _storageContainerName;
+        private readonly string? _storageConnectionString;
+        private readonly string? _storageContainerName;
         private readonly ILogger<AzureStorage> _logger;
 
         public AzureStorage(IConfiguration configuration, ILogger<AzureStorage> logger)

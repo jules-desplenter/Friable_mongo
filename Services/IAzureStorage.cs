@@ -1,6 +1,6 @@
-﻿using Fraible_presentation_api.Models.DTO;
+﻿using Friable_mongo.BlobModels;
 
-namespace Fraible_presentation_api.Repository
+namespace Friable_mongo.Services
 {
     public interface IAzureStorage
     {

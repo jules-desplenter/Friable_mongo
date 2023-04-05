@@ -1,5 +1,4 @@
-﻿using Fraible_presentation_api.Models.DTO;
-using Fraible_presentation_api.Repository;
+﻿using Friable_mongo.BlobModels;
 using Friable_mongo.Services;
 using Microsoft.AspNetCore.Mvc;
 

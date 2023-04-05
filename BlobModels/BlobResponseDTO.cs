@@ -1,4 +1,4 @@
-﻿namespace Fraible_presentation_api.Models.DTO
+﻿namespace Friable_mongo.BlobModels
 {
     public class BlobResponseDTO
     {
