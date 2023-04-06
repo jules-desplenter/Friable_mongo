@@ -99,6 +99,7 @@ namespace Friable_mongo.Services
                 files.Add(new BlobDTO
                 {
                     Uri = fullUri,
+                    Name2 = name,
                     Name = name,
                     ContentType = file.Properties.ContentType
                 });

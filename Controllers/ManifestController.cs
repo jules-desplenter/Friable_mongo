@@ -1,4 +1,5 @@
 ﻿using Friable_mongo.Models;
+using Friable_mongo.Models.DTO;
 using Friable_mongo.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace Friable_mongo.Controllers
         public async Task<List<Manifest>> Get() =>
                    await _manifestService.GetAsync();
 
-        [HttpGet("{*id}")]
+        [HttpGet("{id}/manifest.json")]
         public async Task<ActionResult<Manifest>> Get(string id)
         {
             var book = await _manifestService.GetAsync(id);
@@ -35,6 +36,15 @@ namespace Friable_mongo.Controllers
         public async Task<IActionResult> Post(Manifest newManifest)
         {
             await _manifestService.CreateAsync(newManifest);
+
+            //return CreatedAtAction(nameof(Get), new { id = newManifest.Id }, newManifest);
+            return Ok(newManifest);
+        }
+
+        [HttpPost("/create")]
+        public async Task<IActionResult> Post(AddManifestDTO newManifest)
+        {
+            await _manifestService.AddManifestDTO(newManifest);
 
             //return CreatedAtAction(nameof(Get), new { id = newManifest.Id }, newManifest);
             return Ok(newManifest);
