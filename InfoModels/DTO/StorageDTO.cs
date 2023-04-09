@@ -8,8 +8,12 @@ namespace Friable_mongo.InfoModels.DTO
         public Guid Id { get; set; }
 
         public string? Location { get; set; }
+
         public int? LocationNumber { get; set; }
+
         public string? StorageType { get; set; }
+
+      
 
         [NotMapped]
         public List<string>? Material { get; set; }

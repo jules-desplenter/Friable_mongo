@@ -5,7 +5,7 @@ namespace Friable_mongo.InfoModels
     public class Registration
     {
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string? Name { get; set; }
         public string? Function { get; set; }
         public string? Reason { get; set; }

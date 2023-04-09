@@ -24,11 +24,14 @@ namespace Friable_mongo.InfoModels
         }
 
         [MaxLength]
-        public string? MyProperty { get; set; }
+        public string? DescriptionRemarks { get; set; }
+
+        [MaxLength]
+        public string? ConditionRemarks { get; set; }
 
 
         //for links
-        public Guid RegistrationID { get; set; }
+        public string RegistrationID { get; set; }
         public virtual Registration? Registration { get; set; }
     }
 }

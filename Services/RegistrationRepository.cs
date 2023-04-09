@@ -24,7 +24,7 @@ namespace Friable_mongo.Services
             return registrations;
         }
 
-        public async Task<Registration> GetRegistrationById(Guid id)
+        public async Task<Registration> GetRegistrationById(string id)
         {
             var result = await this._db.Registrations.FirstOrDefaultAsync(r => r.Id == id);
             if (result == null)
@@ -52,7 +52,7 @@ namespace Friable_mongo.Services
             }
         }
 
-        public async Task<string> RemoveRegistration(Guid id)
+        public async Task<string> RemoveRegistration(string id)
         {
             var check = await this._db.Registrations.FirstOrDefaultAsync(r => r.Id == id);
             if (check != null)
@@ -67,7 +67,7 @@ namespace Friable_mongo.Services
             }
         }
 
-        public async Task<string> UpdateRegistration(Guid id, Registration reg)
+        public async Task<string> UpdateRegistration(string id, Registration reg)
         {
             var check = await this._db.Registrations.FirstOrDefaultAsync(r => r.Id == id);
             if (check != null)

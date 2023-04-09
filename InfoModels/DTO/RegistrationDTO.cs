@@ -4,7 +4,7 @@ namespace Friable_mongo.InfoModels.DTO
 {
     public class RegistrationDTO
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string? Name { get; set; }
         public string? Function { get; set; }
         public string? Reason { get; set; }

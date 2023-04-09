@@ -16,22 +16,11 @@ namespace Friable_mongo.InfoModels.DTO
         public virtual ICollection<InscriptionDTO>? Inscriptions { get; set; }
         public virtual ICollection<CollectionMarkDTO>? CollectionMarks { get; set; }
 
-        [NotMapped]
-        public List<string>? Materials { get; set; }
+        public string? Materials { get; set; }
 
-        public string? MaterialsSerialized
-        {
-            get => JsonConvert.SerializeObject(Materials);
-            set => Materials = JsonConvert.DeserializeObject<List<string>>(MaterialsSerialized);
-        }
 
-        [NotMapped]
-        public List<string>? Techniques { get; set; }
-        public string? TechniquesSerialized
-        {
-            get => JsonConvert.SerializeObject(Techniques);
-            set => Techniques = JsonConvert.DeserializeObject<List<string>>(TechniquesSerialized);
-        }
+        public string? Techniques { get; set; }
+      
         public string? Support { get; set; }
         public string? Framed { get; set; }
         public int? Top { get; set; }

@@ -40,7 +40,7 @@ namespace Friable_mongo.InfoModels
         public int? Left { get; set; }
 
         //for links
-        public Guid RegistrationID { get; set; }
+        public string RegistrationID { get; set; }
         public virtual Registration? Registration { get; set; }
 
     }

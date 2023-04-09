@@ -6,9 +6,9 @@ namespace Friable_mongo.Services
     public interface IRegistrationRepository
     {
         Task<string> AddRegistration(RegistrationDTO reg);
-        Task<Registration> GetRegistrationById(Guid id);
+        Task<Registration> GetRegistrationById(string id);
         Task<List<RegistrationDTO>> GetRegistrations();
-        Task<string> RemoveRegistration(Guid id);
-        Task<string> UpdateRegistration(Guid id, Registration reg);
+        Task<string> RemoveRegistration(string id);
+        Task<string> UpdateRegistration(string id, Registration reg);
     }
 }

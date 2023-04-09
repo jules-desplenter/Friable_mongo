@@ -41,7 +41,7 @@ namespace Friable_mongo.Controllers
             return Ok(newManifest);
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create")]
         public async Task<IActionResult> Post(AddManifestDTO newManifest)
         {
             await _manifestService.AddManifestDTO(newManifest);

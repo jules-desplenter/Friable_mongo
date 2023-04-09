@@ -51,7 +51,7 @@ namespace Friable_mongo.InfoModels
         public virtual SecondaryPictorial? Pictorial { get; set; }
 
         // extra links
-        public Guid RegistrationID { get; set; }
+        public string RegistrationID { get; set; }
         public virtual Registration? Registration { get; set; }
     }
 }

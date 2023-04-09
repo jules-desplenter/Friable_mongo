@@ -21,6 +21,10 @@ namespace Friable_mongo.InfoModels.DTO
             set => Damage = JsonConvert.DeserializeObject<List<string>>(DamageSerialized);
         }
 
-        public string? MyProperty { get; set; }
+        [MaxLength]
+        public string? DescriptionRemarks { get; set; }
+
+        [MaxLength]
+        public string? ConditionRemarks { get; set; }
     }
 }

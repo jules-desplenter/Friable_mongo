@@ -26,7 +26,7 @@ namespace Friable_mongo.InfoModels
 
 
         //for links
-        public Guid RegistrationID { get; set; }
+        public string RegistrationID { get; set; }
         public virtual Registration? Registration { get; set; }
     }
 }
