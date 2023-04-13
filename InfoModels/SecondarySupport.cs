@@ -15,7 +15,7 @@ namespace Friable_mongo.InfoModels
         public string? MaterialSerialized
         {
             get => JsonConvert.SerializeObject(Material);
-            set => Material = JsonConvert.DeserializeObject<List<string>>(MaterialSerialized);
+            set => Material = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         public string? PaperType1 { get; set; }
@@ -28,6 +28,8 @@ namespace Friable_mongo.InfoModels
         public string? WatermarkDescription { get; set; }
         public string? WatermarkLocation { get; set; }
         public string? Pinholed { get; set; }
+        public string? PinholesDescription { get; set; }
+        public string? PinholesLocation { get; set; }
         public int? Amount { get; set; }
         public string? Location { get; set; }
 
@@ -42,7 +44,7 @@ namespace Friable_mongo.InfoModels
         public string? DamageSerialized
         {
             get => JsonConvert.SerializeObject(Damage);
-            set => Damage = JsonConvert.DeserializeObject<List<string>>(DamageSerialized);
+            set => Damage = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         [MaxLength]

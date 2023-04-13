@@ -11,6 +11,7 @@ builder.Services.Configure<FriableDatabaseSettings>(
 
 builder.Services.AddSingleton<ManifestService>();
 builder.Services.AddSingleton<CollectionService>();
+builder.Services.AddSingleton<AnnotationService>();
 builder.Services.AddTransient<IAzureStorage,AzureStorage>();
 builder.Services.AddTransient<IRegistrationRepository,RegistrationRepository>();
 

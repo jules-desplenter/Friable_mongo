@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230407170316_extra_remarks_mounting")]
-    partial class extra_remarks_mounting
+    [Migration("20230409165901_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,8 +129,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("MaterialsSerialized")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Right")
                         .HasColumnType("int");
@@ -196,14 +197,12 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConditionRemarks")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DamageSerialized")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionRemarks")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GeneralCondition")
@@ -212,8 +211,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Nature")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Surface")
                         .HasColumnType("nvarchar(max)");
@@ -309,8 +309,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("RectoVerso")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RemarksCondition")
                         .HasColumnType("nvarchar(max)");
@@ -340,9 +341,8 @@ namespace Friable_mongo.Migrations
 
             modelBuilder.Entity("Friable_mongo.InfoModels.Registration", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Function")
                         .HasColumnType("nvarchar(max)");
@@ -447,8 +447,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("RectoVerso")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RemarksCondition")
                         .HasColumnType("nvarchar(max)");
@@ -520,8 +521,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("MaterialSerialized")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");

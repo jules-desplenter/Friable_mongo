@@ -4,6 +4,7 @@ using Friable_mongo.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230410142441_extra_props")]
+    partial class extra_props
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +123,7 @@ namespace Friable_mongo.Migrations
                     b.Property<int?>("Height")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InventoryNumber")
+                    b.Property<int?>("InvetoryNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("Left")
@@ -312,12 +315,6 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Pinholed")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PinholesDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PinholesLocation")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RectoVerso")
                         .HasColumnType("nvarchar(max)");
 
@@ -458,12 +455,6 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pinholed")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PinholesDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PinholesLocation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RectoVerso")

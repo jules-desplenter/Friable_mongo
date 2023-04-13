@@ -15,7 +15,7 @@ namespace Friable_mongo.InfoModels
         public string? FriableMediaSerialized
         {
             get => JsonConvert.SerializeObject(FriableMedia);
-            set => FriableMedia = JsonConvert.DeserializeObject<List<string>>(FriableMediaSerialized);
+            set => FriableMedia = JsonConvert.DeserializeObject<List<string>>(value);
         }
         public string? Fixative { get; set; }
 
@@ -25,7 +25,7 @@ namespace Friable_mongo.InfoModels
         public string? OtherMediaSerialized
         {
             get => JsonConvert.SerializeObject(OtherMedia);
-            set => OtherMedia = JsonConvert.DeserializeObject<List<string>>(OtherMediaSerialized);
+            set => OtherMedia = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         [NotMapped]
@@ -34,7 +34,7 @@ namespace Friable_mongo.InfoModels
         public string? TechniquesSerialized
         {
             get => JsonConvert.SerializeObject(Techniques);
-            set => Techniques = JsonConvert.DeserializeObject<List<string>>(TechniquesSerialized);
+            set => Techniques = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         [MaxLength]
@@ -49,7 +49,7 @@ namespace Friable_mongo.InfoModels
         public string? DamageSerialized
         {
             get => JsonConvert.SerializeObject(Damage);
-            set => Damage = JsonConvert.DeserializeObject<List<string>>(DamageSerialized);
+            set => Damage = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         [MaxLength]

@@ -6,7 +6,7 @@ namespace Friable_mongo.InfoModels.DTO
     public class IdentificationDTO
     {
         public Guid Id { get; set; }
-        public int? InvetoryNumber { get; set; }
+        public int? InventoryNumber { get; set; }
 
         public virtual ArtistDTO? Artist { get; set; }
         public string? TitleDutch { get; set; }
@@ -27,5 +27,9 @@ namespace Friable_mongo.InfoModels.DTO
         public int? Right { get; set; }
         public int? Bottom { get; set; }
         public int? Left { get; set; }
+        public int? Height { get; set; }
+        public int? Width { get; set; }
+        public string? Shape { get; set; }
+
     }
 }

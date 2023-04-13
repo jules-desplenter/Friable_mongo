@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230405190311_more_relations")]
-    partial class more_relations
+    [Migration("20230410134501_added_date")]
+    partial class added_date
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,10 +37,16 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("IdentificationId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("SurName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IdentificationId")
+                        .IsUnique();
 
                     b.ToTable("Artists");
                 });
@@ -108,9 +114,6 @@ namespace Friable_mongo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ArtistId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("Bottom")
                         .HasColumnType("int");
 
@@ -123,11 +126,12 @@ namespace Friable_mongo.Migrations
                     b.Property<int?>("Left")
                         .HasColumnType("int");
 
-                    b.Property<string>("MaterialsSerialized")
+                    b.Property<string>("Materials")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RegistrationID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Right")
                         .HasColumnType("int");
@@ -135,7 +139,7 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Support")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TechniquesSerialized")
+                    b.Property<string>("Techniques")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleDutch")
@@ -148,8 +152,6 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtistId");
 
                     b.HasIndex("RegistrationID")
                         .IsUnique();
@@ -194,27 +196,37 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Assemblage")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ConditionRemarks")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("DamageSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescriptionRemarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GeneralCondition")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("MyProperty")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Nature")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Surface")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RegistrationID")
+                        .IsUnique();
+
                     b.ToTable("Mountings");
                 });
 
-            modelBuilder.Entity("Friable_mongo.InfoModels.Pictorial", b =>
+            modelBuilder.Entity("Friable_mongo.InfoModels.PrimaryPictorial", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -241,6 +253,9 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("RemarksDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("SupportId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Surface")
                         .HasColumnType("nvarchar(max)");
 
@@ -249,26 +264,95 @@ namespace Friable_mongo.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SupportId")
+                        .IsUnique();
+
                     b.ToTable("Pictorials");
                 });
 
-            modelBuilder.Entity("Friable_mongo.InfoModels.Registration", b =>
+            modelBuilder.Entity("Friable_mongo.InfoModels.PrimarySupport", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int?>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Assemblage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DamageSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GeneralCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaterialSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pinholed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RectoVerso")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RemarksCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RemarksDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surface")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Watermark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WatermarkDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WatermarkLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegistrationID")
+                        .IsUnique();
+
+                    b.ToTable("Supports");
+                });
+
+            modelBuilder.Entity("Friable_mongo.InfoModels.Registration", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Function")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("MountingId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("PrimarySupportId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Reason")
                         .HasColumnType("nvarchar(max)");
@@ -276,26 +360,125 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("SecondarySupportId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("StorageId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("Version")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MountingId");
-
-                    b.HasIndex("PrimarySupportId");
-
-                    b.HasIndex("SecondarySupportId");
-
-                    b.HasIndex("StorageId");
-
                     b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Friable_mongo.InfoModels.SecondaryPictorial", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DamageSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fixative")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FriableMediaSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GeneralCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OtherMediaSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RemarksCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RemarksDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("SupportId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Surface")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TechniquesSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SupportId")
+                        .IsUnique();
+
+                    b.ToTable("SecondaryPictorial");
+                });
+
+            modelBuilder.Entity("Friable_mongo.InfoModels.SecondarySupport", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Assemblage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DamageSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GeneralCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MaterialSerialized")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaperType3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pinholed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RectoVerso")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RemarksCondition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RemarksDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surface")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Watermark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WatermarkDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WatermarkLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegistrationID")
+                        .IsUnique();
+
+                    b.ToTable("SecondarySupport");
                 });
 
             modelBuilder.Entity("Friable_mongo.InfoModels.Signature", b =>
@@ -342,6 +525,10 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("MaterialSerialized")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RegistrationID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
@@ -350,74 +537,21 @@ namespace Friable_mongo.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RegistrationID")
+                        .IsUnique();
+
                     b.ToTable("Storages");
                 });
 
-            modelBuilder.Entity("Friable_mongo.InfoModels.Support", b =>
+            modelBuilder.Entity("Friable_mongo.InfoModels.Artist", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasOne("Friable_mongo.InfoModels.Identification", "Identification")
+                        .WithOne("Artist")
+                        .HasForeignKey("Friable_mongo.InfoModels.Artist", "IdentificationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int?>("Amount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Assemblage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DamageSerialized")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GeneralCondition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MaterialSerialized")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaperType1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaperType2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaperType3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("PictorialId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Pinholed")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RectoVerso")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RemarksCondition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RemarksDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surface")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Watermark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WatermarkDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("WatermarkLocation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PictorialId");
-
-                    b.ToTable("Supports");
+                    b.Navigation("Identification");
                 });
 
             modelBuilder.Entity("Friable_mongo.InfoModels.CollectionMark", b =>
@@ -444,17 +578,11 @@ namespace Friable_mongo.Migrations
 
             modelBuilder.Entity("Friable_mongo.InfoModels.Identification", b =>
                 {
-                    b.HasOne("Friable_mongo.InfoModels.Artist", "Artist")
-                        .WithMany()
-                        .HasForeignKey("ArtistId");
-
                     b.HasOne("Friable_mongo.InfoModels.Registration", "Registration")
                         .WithOne("Identification")
                         .HasForeignKey("Friable_mongo.InfoModels.Identification", "RegistrationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Artist");
 
                     b.Navigation("Registration");
                 });
@@ -470,31 +598,59 @@ namespace Friable_mongo.Migrations
                     b.Navigation("Identification");
                 });
 
-            modelBuilder.Entity("Friable_mongo.InfoModels.Registration", b =>
+            modelBuilder.Entity("Friable_mongo.InfoModels.Mounting", b =>
                 {
-                    b.HasOne("Friable_mongo.InfoModels.Mounting", "Mounting")
-                        .WithMany()
-                        .HasForeignKey("MountingId");
+                    b.HasOne("Friable_mongo.InfoModels.Registration", "Registration")
+                        .WithOne("Mounting")
+                        .HasForeignKey("Friable_mongo.InfoModels.Mounting", "RegistrationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Friable_mongo.InfoModels.Support", "PrimarySupport")
-                        .WithMany()
-                        .HasForeignKey("PrimarySupportId");
+                    b.Navigation("Registration");
+                });
 
-                    b.HasOne("Friable_mongo.InfoModels.Support", "SecondarySupport")
-                        .WithMany()
-                        .HasForeignKey("SecondarySupportId");
+            modelBuilder.Entity("Friable_mongo.InfoModels.PrimaryPictorial", b =>
+                {
+                    b.HasOne("Friable_mongo.InfoModels.PrimarySupport", "Support")
+                        .WithOne("Pictorial")
+                        .HasForeignKey("Friable_mongo.InfoModels.PrimaryPictorial", "SupportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("Friable_mongo.InfoModels.Storage", "Storage")
-                        .WithMany()
-                        .HasForeignKey("StorageId");
+                    b.Navigation("Support");
+                });
 
-                    b.Navigation("Mounting");
+            modelBuilder.Entity("Friable_mongo.InfoModels.PrimarySupport", b =>
+                {
+                    b.HasOne("Friable_mongo.InfoModels.Registration", "Registration")
+                        .WithOne("PrimarySupport")
+                        .HasForeignKey("Friable_mongo.InfoModels.PrimarySupport", "RegistrationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("PrimarySupport");
+                    b.Navigation("Registration");
+                });
 
-                    b.Navigation("SecondarySupport");
+            modelBuilder.Entity("Friable_mongo.InfoModels.SecondaryPictorial", b =>
+                {
+                    b.HasOne("Friable_mongo.InfoModels.SecondarySupport", "Support")
+                        .WithOne("Pictorial")
+                        .HasForeignKey("Friable_mongo.InfoModels.SecondaryPictorial", "SupportId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Storage");
+                    b.Navigation("Support");
+                });
+
+            modelBuilder.Entity("Friable_mongo.InfoModels.SecondarySupport", b =>
+                {
+                    b.HasOne("Friable_mongo.InfoModels.Registration", "Registration")
+                        .WithOne("SecondarySupport")
+                        .HasForeignKey("Friable_mongo.InfoModels.SecondarySupport", "RegistrationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("Friable_mongo.InfoModels.Signature", b =>
@@ -508,17 +664,21 @@ namespace Friable_mongo.Migrations
                     b.Navigation("Identification");
                 });
 
-            modelBuilder.Entity("Friable_mongo.InfoModels.Support", b =>
+            modelBuilder.Entity("Friable_mongo.InfoModels.Storage", b =>
                 {
-                    b.HasOne("Friable_mongo.InfoModels.Pictorial", "Pictorial")
-                        .WithMany()
-                        .HasForeignKey("PictorialId");
+                    b.HasOne("Friable_mongo.InfoModels.Registration", "Registration")
+                        .WithOne("Storage")
+                        .HasForeignKey("Friable_mongo.InfoModels.Storage", "RegistrationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Pictorial");
+                    b.Navigation("Registration");
                 });
 
             modelBuilder.Entity("Friable_mongo.InfoModels.Identification", b =>
                 {
+                    b.Navigation("Artist");
+
                     b.Navigation("CollectionMarks");
 
                     b.Navigation("Date");
@@ -528,9 +688,27 @@ namespace Friable_mongo.Migrations
                     b.Navigation("Signature");
                 });
 
+            modelBuilder.Entity("Friable_mongo.InfoModels.PrimarySupport", b =>
+                {
+                    b.Navigation("Pictorial");
+                });
+
             modelBuilder.Entity("Friable_mongo.InfoModels.Registration", b =>
                 {
                     b.Navigation("Identification");
+
+                    b.Navigation("Mounting");
+
+                    b.Navigation("PrimarySupport");
+
+                    b.Navigation("SecondarySupport");
+
+                    b.Navigation("Storage");
+                });
+
+            modelBuilder.Entity("Friable_mongo.InfoModels.SecondarySupport", b =>
+                {
+                    b.Navigation("Pictorial");
                 });
 #pragma warning restore 612, 618
         }

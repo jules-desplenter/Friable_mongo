@@ -28,6 +28,7 @@ namespace Friable_mongo.Controllers
             {
                 return NotFound();
             }
+            //book.Items[0].Annotations = new List<AnnotationsTarget>();
 
             return book;
         }

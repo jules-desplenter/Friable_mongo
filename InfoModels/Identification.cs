@@ -8,7 +8,7 @@ namespace Friable_mongo.InfoModels
     {
         [Key]
         public Guid Id { get; set; }
-        public int? InvetoryNumber { get; set; }
+        public int? InventoryNumber { get; set; }
         public virtual Artist? Artist { get; set; }
         public string? TitleDutch { get; set; }
         public string? TitleFrench { get; set; }
@@ -16,28 +16,17 @@ namespace Friable_mongo.InfoModels
         public virtual Signature? Signature { get; set; }
         public virtual ICollection<Inscription>? Inscriptions { get; set; }
         public virtual ICollection<CollectionMark>? CollectionMarks { get; set; }
-        [NotMapped]
-        public List<string>? Materials { get; set; }
-
-        public string? MaterialsSerialized
-        {
-            get => JsonConvert.SerializeObject(Materials);
-            set => Materials = JsonConvert.DeserializeObject<List<string>>(MaterialsSerialized);
-        }
-
-        [NotMapped]
-        public List<string>? Techniques { get; set; }
-        public string? TechniquesSerialized
-        {
-            get => JsonConvert.SerializeObject(Techniques);
-            set => Techniques = JsonConvert.DeserializeObject<List<string>>(TechniquesSerialized);
-        }
+        public string? Materials { get; set; }
+        public string? Techniques { get; set; }
         public string? Support { get; set; }
         public string? Framed { get; set; }
         public int? Top { get; set; }
         public int? Right { get; set; }
         public int? Bottom { get; set; }
         public int? Left { get; set; }
+        public int? Height { get; set; }
+        public int? Width { get; set; }
+        public string? Shape { get; set; }
 
         //for links
         public string RegistrationID { get; set; }

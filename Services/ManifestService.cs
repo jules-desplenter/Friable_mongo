@@ -48,134 +48,133 @@ namespace Friable_mongo.Services
                 Type = "Manifest",
                 Label = new Value()
                 {
-                    En = new List<string>()
-                        {
-                            man.Label
-                        }
+                    En = new List<string>() {
+              man.Label
+            }
                 },
-                Metadata = new List<Metadata>()
-                    {
-                        new Metadata()
-                            {
-                                Label = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "date"
-                                        }
-                                    },
-                                    Value = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            man.Date
-                                        }
-                                    }
+                Metadata = new List<Metadata>() {
+            new Metadata() {
+                Label = new Value() {
+                    En = new List < string > {
+                      "date"
+                    }
+                  },
+                  Value = new Value() {
+                    En = new List < string > {
+                      man.Date
+                    }
+                  }
+              },
+              new Metadata() {
+                Label = new Value() {
+                    En = new List < string > {
+                      "people"
+                    }
+                  },
+                  Value = new Value() {
+                    En = new List < string > {
+                      "artist: " + man.Artist
+                    }
+                  }
+              },
+              new Metadata() {
+                Label = new Value() {
+                    En = new List < string > {
+                      "medium"
+                    }
+                  },
+                  Value = new Value() {
+                    En = new List < string > {
+                      man.Medium
+                    }
+                  }
+              },
+              new Metadata() {
+                Label = new Value() {
+                    En = new List < string > {
+                      "technique"
+                    }
+                  },
+                  Value = new Value() {
+                    En = new List < string > {
+                      man.Technique
+                    }
+                  }
+              },
+              new Metadata() {
+                Label = new Value() {
+                    En = new List < string > {
+                      "provenance"
+                    }
+                  },
+                  Value = new Value() {
+                    En = new List < string > {
+                      man.Provenance
+                    }
+                  }
+              },
+          },
+                Items = new List<Canvas>() {
+            new Canvas() {
+              Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+                Type = "Canvas",
+                Height = man.Height,
+                Width = man.Width,
+                Annotations = new List <AnnotationsTarget> {
+                  new AnnotationsTarget() {
+                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p2/1",
+                      Type = "AnnotationPage",
+                      Items = new List < AnnotationTarget > {
+                        new AnnotationTarget() {
+                          Id = Guid.NewGuid().ToString(),
+                            Type = "Annotation",
+                            Motivation = "commenting",
+                            Body = new Body() {
+                              Type = "TextualBody",
+                                Format = "text/plain",
+                                Value = "First annotation"
                             },
-                            new Metadata()
-                            {
-                                Label = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "people"
-                                        }
-                                    },
-                                    Value = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "artist: " + man.Artist
-                                        }
-                                    }
-                            },
-                            new Metadata()
-                            {
-                                Label = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "medium"
-                                        }
-                                    },
-                                    Value = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            man.Medium
-                                        }
-                                    }
-                            },
-                            new Metadata()
-                            {
-                                Label = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "technique"
-                                        }
-                                    },
-                                    Value = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                             man.Technique
-                                        }
-                                    }
-                            },
-                            new Metadata()
-                            {
-                                Label = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                            "provenance"
-                                        }
-                                    },
-                                    Value = new Value()
-                                    {
-                                        En = new List < string >
-                                        {
-                                             man.Provenance
-                                        }
-                                    }
-                            },
-                    },
-                Items = new List<Canvas>()
-                    {
-                        new Canvas()
-                        {
-                            Id = "http://iiif.io/api/presentation/3/context.json" + man.ObjectNumber + "/canvas/p1",
-                                Type = "Canvas",
+                            Target = new Target() {
+                              Type = "SpecificResource",
+                                Source = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+                            }
+
+                        }
+                      }
+                  }
+                },
+                Items = new List < AnnotationPage > {
+                  new AnnotationPage() {
+                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p1/1",
+                      Type = "AnnotationPage",
+                      Items = new List < Annotation > () {
+                        new Annotation() {
+                          Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/annotation/p0001-image",
+                            Motivation = "painting",
+                            Type = "Annotation",
+                            Body = new Body() {
+                              Id = man.Imagelink + "/full/max/0/default.jpg",
+                                Type = "Image",
+                                Format = "image/jpeg",
                                 Height = man.Height,
                                 Width = man.Width,
-                                Items = new List < AnnotationPage >
-                                {
-                                    new AnnotationPage()
-                                    {
-                                        Id = "http://iiif.io/api/presentation/3/context.json" + man.ObjectNumber + "/page/p1/1",
-                                            Type = "AnnotaionPage",
-                                            Items = new List < Annotation > ()
-                                            {
-                                                new Annotation()
-                                                {
-                                                    Id = "http://iiif.io/api/presentation/3/context.json" + man.ObjectNumber + "/annotation/p0001-image",
-                                                        Motivation = man.Classification,
-                                                        Body = new Body()
-                                                        {
-                                                            Id = man.Imagelink,
-                                                                Type = "Image",
-                                                                Format = "image/png",
-                                                                Height = man.Height,
-                                                                Width = man.Width,
-                                                        },
-                                                        Target = "http://iiif.io/api/presentation/3/context.json" + man.ObjectNumber + "/canvas/p1"
-                                                }
-                                            }
-                                    }
-                                }
+                                Service = new List < Service > () {
+                                  new Service() {
+                                    Id = man.Imagelink,
+                                      Profile = "level1",
+                                      Type = "ImageService3",
+                                  }
+                                },
+                            },
+
+                            Target = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+                            }
                         }
-                    }
+                      }
+                  }
+                }
+            }
+          
             };
             await _manifestsCollection.InsertOneAsync(manifest);
         }

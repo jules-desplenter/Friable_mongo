@@ -1,9 +1,6 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Friable_mongo.Models
+﻿namespace Friable_mongo.Models
 {
-
-    public class Annotation
+    public class AnnotationTarget
     {
         public string Id { get; set; }
 
@@ -29,9 +26,7 @@ namespace Friable_mongo.Models
         public Body Body { get; set; }
 
         //public string? Target { get; set; }
-        public string? Target { get; set; }
+        public Target? Target { get; set; }
         public List<Service>? Service { get; set; }
-
-
     }
 }

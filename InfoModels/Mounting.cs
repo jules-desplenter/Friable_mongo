@@ -20,7 +20,7 @@ namespace Friable_mongo.InfoModels
         public string? DamageSerialized
         {
             get => JsonConvert.SerializeObject(Damage);
-            set => Damage = JsonConvert.DeserializeObject<List<string>>(DamageSerialized);
+            set => Damage = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         [MaxLength]

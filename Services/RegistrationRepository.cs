@@ -24,16 +24,18 @@ namespace Friable_mongo.Services
             return registrations;
         }
 
-        public async Task<Registration> GetRegistrationById(string id)
+        public async Task<RegistrationDTO> GetRegistrationById(string id)
         {
             var result = await this._db.Registrations.FirstOrDefaultAsync(r => r.Id == id);
+            RegistrationDTO registration = _mapper.Map<RegistrationDTO>(result);
+
             if (result == null)
             {
-                return new Registration();
+                return new RegistrationDTO();
             }
             else
             {
-                return result;
+                return registration;
             }
         }
 
@@ -67,13 +69,14 @@ namespace Friable_mongo.Services
             }
         }
 
-        public async Task<string> UpdateRegistration(string id, Registration reg)
+        public async Task<string> UpdateRegistration(string id, RegistrationDTO reg)
         {
             var check = await this._db.Registrations.FirstOrDefaultAsync(r => r.Id == id);
+            Registration registration = _mapper.Map<Registration>(reg);
             if (check != null)
             {
                 _db.Registrations.Remove(check);
-                _db.Registrations.Add(reg);
+                _db.Registrations.Add(registration);
                 _db.SaveChanges();
                 return "done";
             }

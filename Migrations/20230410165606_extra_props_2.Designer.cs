@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230409165622_id_type")]
-    partial class id_type
+    [Migration("20230410165606_extra_props_2")]
+    partial class extra_props_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,13 +120,16 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Framed")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Height")
+                        .HasColumnType("int");
+
                     b.Property<int?>("InvetoryNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("Left")
                         .HasColumnType("int");
 
-                    b.Property<string>("MaterialsSerialized")
+                    b.Property<string>("Materials")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RegistrationID")
@@ -136,10 +139,13 @@ namespace Friable_mongo.Migrations
                     b.Property<int?>("Right")
                         .HasColumnType("int");
 
+                    b.Property<string>("Shape")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Support")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TechniquesSerialized")
+                    b.Property<string>("Techniques")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TitleDutch")
@@ -149,6 +155,9 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Top")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Width")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -306,6 +315,12 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("Pinholed")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PinholesDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PinholesLocation")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RectoVerso")
                         .HasColumnType("nvarchar(max)");
 
@@ -343,6 +358,10 @@ namespace Friable_mongo.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Function")
                         .HasColumnType("nvarchar(max)");
@@ -442,6 +461,12 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Pinholed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PinholesDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PinholesLocation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RectoVerso")

@@ -10,6 +10,9 @@ namespace Friable_mongo.InfoModels.DTO
         public string? Reason { get; set; }
         public int? Version { get; set; }
         public string? Remarks { get; set; }
+
+        public string? Date { get; set; }
+
         public virtual IdentificationDTO? Identification { get; set; }
         public virtual SupportDTO? PrimarySupport { get; set; }
         public virtual SupportDTO? SecondarySupport { get; set; }

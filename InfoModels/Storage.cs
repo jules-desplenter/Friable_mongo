@@ -19,7 +19,7 @@ namespace Friable_mongo.InfoModels
         public string? MaterialSerialized
         {
             get => JsonConvert.SerializeObject(Material);
-            set => Material = JsonConvert.DeserializeObject<List<string>>(MaterialSerialized);
+            set => Material = JsonConvert.DeserializeObject<List<string>>(value);
         }
 
         public string? Remarks { get; set; }

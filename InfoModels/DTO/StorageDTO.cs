@@ -15,7 +15,6 @@ namespace Friable_mongo.InfoModels.DTO
 
       
 
-        [NotMapped]
         public List<string>? Material { get; set; }
 
         public string? MaterialSerialized

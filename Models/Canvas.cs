@@ -43,7 +43,7 @@ namespace Friable_mongo.Models
 
         public List<PartOf>? PartOf { get; set; }
 
-        public List<Annotations>? Annotations { get; set; }
+        public List<AnnotationsTarget>? Annotations { get; set; }
 
 
 

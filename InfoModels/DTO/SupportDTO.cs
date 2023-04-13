@@ -26,6 +26,9 @@ namespace Friable_mongo.InfoModels.DTO
         public string? WatermarkDescription { get; set; }
         public string? WatermarkLocation { get; set; }
         public string? Pinholed { get; set; }
+
+        public string? PinholesDescription { get; set; }
+        public string? PinholesLocation { get; set; }
         public int? Amount { get; set; }
         public string? Location { get; set; }
 

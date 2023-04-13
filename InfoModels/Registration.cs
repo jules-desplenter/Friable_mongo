@@ -11,6 +11,8 @@ namespace Friable_mongo.InfoModels
         public string? Reason { get; set; }
         public int? Version { get; set; }
 
+        public string Date { get; set; }
+
         [MaxLength]
         public string? Remarks { get; set; }
         public virtual Identification? Identification { get; set; }

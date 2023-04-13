@@ -10,5 +10,6 @@ namespace Friable_mongo.Models
         public string Context { get; set; }
         public string Type { get; set; }
         public string? Region { get; set; }
+        public string Value { get; set; }
     }
 }

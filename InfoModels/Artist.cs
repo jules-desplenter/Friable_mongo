@@ -12,7 +12,7 @@ namespace Friable_mongo.InfoModels
 
         // extra link
         public Guid IdentificationId { get; set; }
-        public virtual Identification Identification { get; set; }
+        public  virtual Identification Identification { get; set; }
 
     }
 }

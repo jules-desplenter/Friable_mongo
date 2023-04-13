@@ -22,7 +22,7 @@ namespace Friable_mongo.Controllers
                   await _registrationRepository.GetRegistrations();
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Registration>> Get(string id)
+        public async Task<ActionResult<RegistrationDTO>> Get(string id)
         {
             var book = await _registrationRepository.GetRegistrationById(id);
 
@@ -44,7 +44,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, Registration updatedBook)
+        public async Task<IActionResult> Update(string id, RegistrationDTO updatedBook)
         {
             var book = await _registrationRepository.GetRegistrationById(id);
 
