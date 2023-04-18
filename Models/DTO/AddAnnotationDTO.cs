@@ -2,8 +2,8 @@
 {
     public class AddAnnotationDTO
     {
-        public string Canvas { get; set; }
+        public string? Canvas { get; set; }
         public string data { get; set; }
-        public string uuid { get; set; }
+        public string? uuid { get; set; }
     }
 }

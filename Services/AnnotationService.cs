@@ -79,5 +79,19 @@ namespace Friable_mongo.Services
             }
             return null;
         }
+        public async Task<AnnotationTarget> UpdateAnnotation(dynamic annotation, string id, int page, string annoid)
+        {
+            var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            if (manifest != null)
+            {
+                var cool = manifest.Items[page - 1].Annotations[0].Items.FirstOrDefault(x => x.Id == annoid);
+                manifest.Items[page - 1].Annotations[0].Items.Remove(cool);
+                cool.Body.Type = annotation.body.type;
+                cool.Body.Value = annotation.body.value;
+                manifest.Items[page - 1].Annotations[0].Items.Add(cool);
+                await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest);
+            }
+            return null;
+        }
     }
 }

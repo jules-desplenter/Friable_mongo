@@ -56,6 +56,14 @@ namespace Friable_mongo.Controllers
             AnnotationTarget ano = await _annotationService.GetAnnotation(id, page, annoid);
             return Ok(ano);
         }
+
+        [HttpPost("{id}/canvas/p{page}/{annoid}")]
+        public async Task<ActionResult<AnnotationTarget>> EditAnnoation([FromBody] AddAnnotationDTO anno, string id, int page, string annoid)
+        {
+            var jsonObject = JsonConvert.DeserializeObject<dynamic>(anno.data);
+            AnnotationTarget ano = await _annotationService.UpdateAnnotation(jsonObject, id, page, annoid);
+            return Ok(ano);
+        }
     }
 
 }
