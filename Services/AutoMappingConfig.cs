@@ -22,6 +22,7 @@ namespace Friable_mongo.Services
             CreateMap<Artist, ArtistDTO>().ReverseMap();
             CreateMap<PrimaryPictorial,PictorialDTO>().ReverseMap();
             CreateMap<SecondaryPictorial, PictorialDTO>().ReverseMap();
+            CreateMap<Framing, FramingDTO>().ReverseMap();
 
         }
     }

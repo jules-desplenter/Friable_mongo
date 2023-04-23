@@ -19,6 +19,7 @@ namespace Friable_mongo.InfoModels
         public virtual PrimarySupport? PrimarySupport { get; set; }
         public virtual SecondarySupport? SecondarySupport { get; set; }
         public virtual Storage? Storage { get; set; }
-        public virtual Mounting? Mounting { get; set; }
+        public virtual Mounting? Mounting { get; set; } 
+        public virtual Framing? Framing { get; set; }
     }
 }

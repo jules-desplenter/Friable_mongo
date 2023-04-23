@@ -18,5 +18,6 @@ namespace Friable_mongo.InfoModels.DTO
         public virtual SupportDTO? SecondarySupport { get; set; }
         public virtual StorageDTO? Storage { get; set; }
         public virtual MountingDTO? Mounting { get; set; }
+        public virtual FramingDTO? Framing { get; set; }
     }
 }

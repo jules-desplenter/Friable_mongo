@@ -100,6 +100,7 @@ namespace Friable_mongo.Services
                 {
                     Uri = fullUri,
                     Name2 = name,
+                    Name3 = name,
                     Name = name,
                     ContentType = file.Properties.ContentType
                 });

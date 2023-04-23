@@ -51,6 +51,15 @@ namespace Friable_mongo.Controllers
             return Ok(newManifest);
         }
 
+        [HttpPost("createMultiple")]
+        public async Task<IActionResult> Post(AddMultipleManifestDTO newManifest)
+        {
+            await _manifestService.AddMultipleManifestDTO(newManifest);
+
+            //return CreatedAtAction(nameof(Get), new { id = newManifest.Id }, newManifest);
+            return Ok(newManifest);
+        }
+
         [HttpPut("{*id}")]
         public async Task<IActionResult> Update(string id, Manifest updatedBook)
         {

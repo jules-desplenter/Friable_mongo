@@ -56,6 +56,13 @@ namespace Friable_mongo.Services
              .HasForeignKey<Mounting>(b => b.RegistrationID)
              .OnDelete(DeleteBehavior.Cascade);
 
+
+            modelBuilder.Entity<Registration>()
+             .HasOne(p => p.Framing)
+             .WithOne(c => c.Registration)
+             .HasForeignKey<Framing>(b => b.RegistrationID)
+             .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<PrimarySupport>()
               .HasOne(p => p.Pictorial)
               .WithOne(c => c.Support)

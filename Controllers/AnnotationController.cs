@@ -22,7 +22,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpGet("{id}/canvas/p{page}")]
-        public async Task<ActionResult<List<AnnotationsTarget>>> GetAnnotations(string id, int page)
+        public async Task<ActionResult<AnnotationsTarget>> GetAnnotations(string id, int page)
         {
             var book = await _annotationService.GetAnnotations(id, page - 1);
 
@@ -31,7 +31,34 @@ namespace Friable_mongo.Controllers
                 return Ok(new List<Annotations>());
             }
 
-            return book;
+            return book.FirstOrDefault();
+        }
+
+
+        [HttpGet("/api/manifest/{id}/page/p2/{page}")]
+        public async Task<ActionResult<AnnotationsTarget>> GetAnnotationsExtra(string id, int page)
+        {
+            var book = await _annotationService.GetAnnotations(id, page - 1);
+
+            if (book is null)
+            {
+                return Ok(new List<Annotations>());
+            }
+
+            return book.FirstOrDefault();
+        }
+
+        [HttpGet("/api/manifest/{id}/canvas/p{page}")]
+        public async Task<ActionResult<AnnotationsTarget>> GetAnnotationsExtraExtra(string id, int page)
+        {
+            var book = await _annotationService.GetAnnotations(id, page - 1);
+
+            if (book is null)
+            {
+                return Ok(new List<Annotations>());
+            }
+
+            return book.FirstOrDefault();
         }
 
         [HttpPost]
