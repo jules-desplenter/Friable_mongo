@@ -9,6 +9,9 @@ namespace Friable_mongo.InfoModels
         [Key]
         public Guid Id { get; set; }
 
+        public string? Based { get; set; }
+
+
         [NotMapped]
         public List<string>? Material { get; set; }
 

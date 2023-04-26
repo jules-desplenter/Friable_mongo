@@ -9,7 +9,9 @@ namespace Friable_mongo.Services
         private readonly IMongoCollection<Manifest> _manifestsCollection;
         public ManifestService(IOptions<FriableDatabaseSettings> bookStoreDatabaseSettings)
         {
-            var mongoClient = new MongoClient(bookStoreDatabaseSettings.Value.ConnectionString);
+            var settings = MongoClientSettings.FromConnectionString(bookStoreDatabaseSettings.Value.ConnectionString);
+            settings.ServerApi = new ServerApi(ServerApiVersion.V1);
+            var mongoClient = new MongoClient(settings);
             var mongoDatabase = mongoClient.GetDatabase(bookStoreDatabaseSettings.Value.DatabaseName);
             _manifestsCollection = mongoDatabase.GetCollection<Manifest>(bookStoreDatabaseSettings.Value.BooksCollectionName);
         }
@@ -259,7 +261,7 @@ namespace Friable_mongo.Services
                 }
 
             };
-            for (int i = 0;i<man.Imagelink.Count; i++)
+            for (int i = 0;i < man.Imagelink.Count; i++)
             {
                 manifest.Items.Add(new Canvas()
                 {
@@ -309,8 +311,6 @@ namespace Friable_mongo.Services
                               Id = man.Imagelink[i] + "/full/max/0/default.jpg",
                                 Type = "Image",
                                 Format = "image/jpeg",
-                                Height = man.Height[i],
-                                Width = man.Width[i],
                                 Service = new List < Service > () {
                                   new Service() {
                                     Id = man.Imagelink[i],

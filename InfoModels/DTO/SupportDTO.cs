@@ -8,6 +8,8 @@ namespace Friable_mongo.InfoModels.DTO
     {
         public Guid Id { get; set; }
 
+        public string? Based { get; set; }
+
         public List<string>? Material { get; set; }
 
         public string? MaterialSerialized
