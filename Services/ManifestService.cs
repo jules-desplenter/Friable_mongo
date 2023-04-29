@@ -18,8 +18,9 @@ namespace Friable_mongo.Services
         public async Task<List<Manifest>> GetAsync() => await _manifestsCollection.Find(_ => true).ToListAsync();
         public async Task<Manifest?> GetAsync(string id)
         {
+            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
             var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            manifest.Id = "https://localhost:7148/api/manifest/" + manifest.Id + "/manifest.json";
+            manifest.Id = url + manifest.Id + "/manifest.json";
             return manifest;
         }
         public async Task CreateAsync(Manifest newBook)
@@ -43,6 +44,7 @@ namespace Friable_mongo.Services
         public async Task RemoveAsync(string id) => await _manifestsCollection.DeleteOneAsync(x => x.Id == id);
         public async Task AddManifestDTO(AddManifestDTO man)
         {
+            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
             var manifest = new Manifest()
             {
                 Id = man.ObjectNumber,
@@ -118,13 +120,13 @@ namespace Friable_mongo.Services
           },
                 Items = new List<Canvas>() {
             new Canvas() {
-              Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+              Id = url + man.ObjectNumber + "/canvas/p1",
                 Type = "Canvas",
                 Height = man.Height,
                 Width = man.Width,
                 Annotations = new List <AnnotationsTarget> {
                   new AnnotationsTarget() {
-                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p2/1",
+                    Id = url + man.ObjectNumber + "/page/p2/1",
                       Type = "AnnotationPage",
                       Items = new List < AnnotationTarget > {
                         new AnnotationTarget() {
@@ -138,7 +140,7 @@ namespace Friable_mongo.Services
                             },
                             Target = new Target() {
                               Type = "SpecificResource",
-                                Source = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+                                Source = url + man.ObjectNumber + "/canvas/p1",
                             }
 
                         }
@@ -147,11 +149,11 @@ namespace Friable_mongo.Services
                 },
                 Items = new List < AnnotationPage > {
                   new AnnotationPage() {
-                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p1/1",
+                    Id = url + man.ObjectNumber + "/page/p1/1",
                       Type = "AnnotationPage",
                       Items = new List < Annotation > () {
                         new Annotation() {
-                          Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/annotation/p0001-image",
+                          Id = url + man.ObjectNumber + "/annotation/p0001-image",
                             Motivation = "painting",
                             Type = "Annotation",
                             Body = new Body() {
@@ -169,7 +171,7 @@ namespace Friable_mongo.Services
                                 },
                             },
 
-                            Target = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p1",
+                            Target = url + man.ObjectNumber + "/canvas/p1",
                             }
                         }
                       }
@@ -183,6 +185,7 @@ namespace Friable_mongo.Services
 
         public async Task AddMultipleManifestDTO(AddMultipleManifestDTO man)
         {
+            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
             var manifest = new Manifest()
             {
                 Id = man.ObjectNumber,
@@ -271,13 +274,13 @@ namespace Friable_mongo.Services
                       man.Label[i]
                     }
                     },
-                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p" + (i + 1),
+                    Id = url + man.ObjectNumber + "/canvas/p" + (i + 1),
                     Type = "Canvas",
                     Height = man.Height[i],
                     Width = man.Width[i],
                     Annotations = new List<AnnotationsTarget> {
                   new AnnotationsTarget() {
-                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p2/1",
+                    Id = url + man.ObjectNumber + "/page/p2/1",
                       Type = "AnnotationPage",
                       Items = new List < AnnotationTarget > {
                         new AnnotationTarget() {
@@ -291,7 +294,7 @@ namespace Friable_mongo.Services
                             },
                             Target = new Target() {
                               Type = "SpecificResource",
-                                Source = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p" + (i + 1),
+                                Source = url + man.ObjectNumber + "/canvas/p" + (i + 1),
                             }
 
                         }
@@ -300,11 +303,11 @@ namespace Friable_mongo.Services
                 },
                     Items = new List<AnnotationPage> {
                   new AnnotationPage() {
-                    Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/page/p1/1",
+                    Id = url + man.ObjectNumber + "/page/p1/1",
                       Type = "AnnotationPage",
                       Items = new List < Annotation > () {
                         new Annotation() {
-                          Id = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/annotation/p000" + (i + 1) + "-image",
+                          Id = url + man.ObjectNumber + "/annotation/p000" + (i + 1) + "-image",
                             Motivation = "painting",
                             Type = "Annotation",
                             Body = new Body() {
@@ -320,7 +323,7 @@ namespace Friable_mongo.Services
                                 },
                             },
 
-                            Target = "https://localhost:7148/api/manifest/" + man.ObjectNumber + "/canvas/p" + (i+1),
+                            Target = url + man.ObjectNumber + "/canvas/p" + (i+1),
                             }
                         }
                       }

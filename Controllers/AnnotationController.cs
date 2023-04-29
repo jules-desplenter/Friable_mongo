@@ -2,6 +2,7 @@
 using Friable_mongo.Models;
 using Friable_mongo.Models.DTO;
 using Friable_mongo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using Newtonsoft.Json;
@@ -12,6 +13,7 @@ namespace Friable_mongo.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AnnotationController : ControllerBase
     {
         private readonly AnnotationService _annotationService;

@@ -1,11 +1,13 @@
 ﻿using Friable_mongo.Models;
 using Friable_mongo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Friable_mongo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CollectionController : ControllerBase
     {
         private readonly CollectionService _CollectionService;

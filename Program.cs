@@ -1,7 +1,9 @@
 using Friable_mongo.Models;
 using Friable_mongo.Services;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,12 +22,49 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(AutoMappingConfig));
 
+builder.Services.AddAuthentication()
+.AddJwtBearer("JwtBearer", jwtBearerOptions =>
+{
+    jwtBearerOptions.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("hierkomtnuietsgeheimwatwelcoolis")),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = false,
+    };
+});
 
 builder.Services.AddControllers().AddJsonOptions(
         options => {  options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull; });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Enter a valid JSON web token here",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
 
 var app = builder.Build();
 
@@ -48,6 +87,7 @@ app.UseCors(builder =>
     .AllowAnyHeader();
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

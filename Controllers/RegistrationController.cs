@@ -1,12 +1,14 @@
 ﻿using Friable_mongo.InfoModels;
 using Friable_mongo.InfoModels.DTO;
 using Friable_mongo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Friable_mongo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RegistrationController : Controller
     {
         public IRegistrationRepository _registrationRepository { get; }

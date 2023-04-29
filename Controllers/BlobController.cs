@@ -1,11 +1,13 @@
 ﻿using Friable_mongo.BlobModels;
 using Friable_mongo.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Friable_mongo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class BlobController : ControllerBase
     {
         private readonly IAzureStorage _azureStorage;
