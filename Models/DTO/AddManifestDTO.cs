@@ -7,6 +7,7 @@ namespace Friable_mongo.Models.DTO
         public string Label { get; set; }
         public string? Date { get; set; }
         public string? Classification { get; set; }
+        public string? Description { get; set; }
         public string ObjectNumber { get; set; }
         public string? Artist { get; set; }
         public string? Medium { get; set; }

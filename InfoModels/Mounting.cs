@@ -9,11 +9,33 @@ namespace Friable_mongo.InfoModels
         [Key]
         public Guid Id { get; set; }
 
-        public string? Nature { get; set; }
-        public string? Assemblage { get; set; }
-        public string? GeneralCondition { get; set; }
-        public string? Surface { get; set; }
+        [NotMapped]
+        public List<string>? Nature { get; set; }
+        public string? NatureSerialized
+        {
+            get => JsonConvert.SerializeObject(Nature);
+            set => Nature = JsonConvert.DeserializeObject<List<string>>(value);
+        }
 
+        [NotMapped]
+        public List<string>? Assemblage { get; set; }
+
+        public string? AssemblageSerialized
+        {
+            get => JsonConvert.SerializeObject(Assemblage);
+            set => Assemblage = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+
+        public string? GeneralCondition { get; set; }
+
+        [NotMapped]
+        public List<string>? Surface { get; set; }
+
+        public string? SurfaceSerialized
+        {
+            get => JsonConvert.SerializeObject(Surface);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(value);
+        }
         [NotMapped]
         public List<string>? Damage { get; set; }
 

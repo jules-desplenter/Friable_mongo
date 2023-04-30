@@ -7,5 +7,7 @@
         public string? Location { get; set; }
         public string? Media { get; set; }
         public string? Value { get; set; }
+        public string? SupposedDate { get; set; }
+
     }
 }

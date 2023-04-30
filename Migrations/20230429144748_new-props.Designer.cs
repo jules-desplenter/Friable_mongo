@@ -4,6 +4,7 @@ using Friable_mongo.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230429144748_new-props")]
+    partial class newprops
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -430,7 +433,7 @@ namespace Friable_mongo.Migrations
                     b.Property<Guid>("SupportId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("SurfaceSerialized")
+                    b.Property<string>("Surface")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TechniquesSerialized")

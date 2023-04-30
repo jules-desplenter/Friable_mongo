@@ -12,6 +12,8 @@ namespace Friable_mongo.InfoModels.DTO
 
         public List<string>? Material { get; set; }
 
+        public string? Attachment { get; set; }
+
         public string? MaterialSerialized
         {
             get => JsonConvert.SerializeObject(Material);
@@ -37,7 +39,14 @@ namespace Friable_mongo.InfoModels.DTO
         [MaxLength]
         public string? RemarksDescription { get; set; }
         public string? GeneralCondition { get; set; }
-        public string? Surface { get; set; }
+
+        public List<string>? Surface { get; set; }
+
+        public string? SurfaceSerialized
+        {
+            get => JsonConvert.SerializeObject(Surface);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(SurfaceSerialized);
+        }
 
         [NotMapped]
         public List<string>? Damage { get; set; }

@@ -42,8 +42,15 @@ namespace Friable_mongo.InfoModels
         public string? RemarksDescription { get; set; }
 
         public string? GeneralCondition { get; set; }
-        public string? Surface { get; set; }
 
+        [NotMapped]
+        public List<string>? Surface { get; set; }
+
+        public string? SurfaceSerialized
+        {
+            get => JsonConvert.SerializeObject(Surface);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(value);
+        }
         [NotMapped]
         public List<string>? Damage { get; set; }
 

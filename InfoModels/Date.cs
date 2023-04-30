@@ -8,6 +8,8 @@
         public string? Media { get; set; }
         public string? Value { get; set; }
 
+        public string? SupposedDate { get; set; }
+
         // extra link
         public Guid IdentificationId { get; set; }
         public virtual Identification Identification { get; set; }

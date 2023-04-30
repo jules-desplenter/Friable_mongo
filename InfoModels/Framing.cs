@@ -34,11 +34,48 @@ namespace Friable_mongo.InfoModels
         public string? MouldingAssemblage { get; set; }
         public string? RaisingSticksMaterial { get; set; }
         public string? RaisingSticksAssemblage { get; set; }
-        public string? InnerSpacers1 { get; set; }
-        public string? InnerSpacers2 { get; set; }
-        public string? BackingBoard1 { get; set; }
-        public string? BackingBoard2 { get; set; }
-        public string? Sealing { get; set; }
+
+        [NotMapped]
+        public List<string>? InnerSpacers1 { get; set; }
+
+        public string? InnerSpacers1Serialized
+        {
+            get => JsonConvert.SerializeObject(InnerSpacers1);
+            set => InnerSpacers1 = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+        [NotMapped]
+        public List<string>? InnerSpacers2 { get; set; }
+
+        public string? InnerSpacers2Serialized
+        {
+            get => JsonConvert.SerializeObject(InnerSpacers2);
+            set => InnerSpacers2 = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+
+        [NotMapped]
+        public List<string>? BackingBoard1 { get; set; }
+
+        public string? BackingBoard1Serialized
+        {
+            get => JsonConvert.SerializeObject(BackingBoard1);
+            set => BackingBoard1 = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+        [NotMapped]
+        public List<string>? BackingBoard2 { get; set; }
+
+        public string? BackingBoard2Serialized
+        {
+            get => JsonConvert.SerializeObject(BackingBoard2);
+            set => BackingBoard2 = JsonConvert.DeserializeObject<List<string>>(value);
+        }
+        [NotMapped]
+        public List<string>? Sealing { get; set; }
+
+        public string? SealingSerialized
+        {
+            get => JsonConvert.SerializeObject(Sealing);
+            set => Sealing = JsonConvert.DeserializeObject<List<string>>(value);
+        }
 
         public string? HangingSystem { get; set; }
         public string? Indicators { get; set; }
@@ -53,7 +90,15 @@ namespace Friable_mongo.InfoModels
         public string? HistoryIndicators { get; set; }
         public int? LabelsAmount { get; set; }
         public string? HistoryDescription { get; set; }
-        public string? Surface { get; set; }
+
+        [NotMapped]
+        public List<string>? Surface { get; set; }
+
+        public string? SurfaceSerialized
+        {
+            get => JsonConvert.SerializeObject(Surface);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(value);
+        }
 
         [NotMapped]
         public List<string>? MechanicalProblems { get; set; }
@@ -90,6 +135,8 @@ namespace Friable_mongo.InfoModels
             get => JsonConvert.SerializeObject(AestheticProblems);
             set => AestheticProblems = JsonConvert.DeserializeObject<List<string>>(value);
         }
+
+        public string? DamageRelevant { get; set; }
 
         //for links
         public string RegistrationID { get; set; }

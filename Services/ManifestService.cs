@@ -53,77 +53,35 @@ namespace Friable_mongo.Services
                 Label = new Value()
                 {
                     En = new List<string>() {
-              man.Label
-            }
+                        man.Label
+                    }
                 },
                 Metadata = new List<Metadata>() {
-            new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "date"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Date
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "people"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      "artist: " + man.Artist
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "medium"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Medium
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "technique"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Technique
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "provenance"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Provenance
-                    }
-                  }
-              },
-          },
+
+                    new Metadata() {
+                        Label = new Value() {
+                            En = new List<string> {
+                                "people"
+                            }
+                        },
+                        Value = new Value() {
+                            En = new List<string> {
+                                "artist: " + man.Artist
+                            }
+                        }
+                    },
+
+                },
                 Items = new List<Canvas>() {
             new Canvas() {
               Id = url + man.ObjectNumber + "/canvas/p1",
                 Type = "Canvas",
                 Height = man.Height,
                 Width = man.Width,
+                               Label = new Value()
+                {
+                    En = new List<string> {man.Description }
+                },
                 Annotations = new List <AnnotationsTarget> {
                   new AnnotationsTarget() {
                     Id = url + man.ObjectNumber + "/page/p2/1",
@@ -194,22 +152,11 @@ namespace Friable_mongo.Services
                 Label = new Value()
                 {
                     En = new List<string>() {
-              man.Label[0]
+              man.Label
             }
                 },
                 Metadata = new List<Metadata>() {
-            new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "date"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Date
-                    }
-                  }
-              },
+
               new Metadata() {
                 Label = new Value() {
                     En = new List < string > {
@@ -222,56 +169,21 @@ namespace Friable_mongo.Services
                     }
                   }
               },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "medium"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Medium
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "technique"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Technique
-                    }
-                  }
-              },
-              new Metadata() {
-                Label = new Value() {
-                    En = new List < string > {
-                      "provenance"
-                    }
-                  },
-                  Value = new Value() {
-                    En = new List < string > {
-                      man.Provenance
-                    }
-                  }
-              },
+
           },
                 Items = new List<Canvas>()
                 {
                 }
 
             };
-            for (int i = 0;i < man.Imagelink.Count; i++)
+            for (int i = 0; i < man.Imagelink.Count; i++)
             {
                 manifest.Items.Add(new Canvas()
                 {
                     Label = new Value()
                     {
                         En = new List<string> {
-                      man.Label[i]
+                      man.Label
                     }
                     },
                     Id = url + man.ObjectNumber + "/canvas/p" + (i + 1),

@@ -9,7 +9,6 @@ namespace Friable_mongo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class ManifestController : ControllerBase
     {
         private readonly ManifestService _manifestService;
@@ -36,6 +35,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpPost()]
+        [Authorize]
         public async Task<IActionResult> Post(Manifest newManifest)
         {
             await _manifestService.CreateAsync(newManifest);
@@ -45,6 +45,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> Post(AddManifestDTO newManifest)
         {
             await _manifestService.AddManifestDTO(newManifest);
@@ -54,6 +55,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpPost("createMultiple")]
+        [Authorize]
         public async Task<IActionResult> Post(AddMultipleManifestDTO newManifest)
         {
             await _manifestService.AddMultipleManifestDTO(newManifest);
@@ -63,6 +65,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpPut("{*id}")]
+        [Authorize]
         public async Task<IActionResult> Update(string id, Manifest updatedBook)
         {
             var book = await _manifestService.GetAsync(id);
@@ -80,6 +83,7 @@ namespace Friable_mongo.Controllers
         }
 
         [HttpDelete("{*id}")]
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             var book = await _manifestService.GetAsync(id);

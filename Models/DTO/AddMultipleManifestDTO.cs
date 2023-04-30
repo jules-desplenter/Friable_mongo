@@ -2,7 +2,7 @@
 {
     public class AddMultipleManifestDTO
     {
-        public List<string> Label { get; set; }
+        public string? Label { get; set; }
         public string? Date { get; set; }
         public string? Classification { get; set; }
         public string ObjectNumber { get; set; }

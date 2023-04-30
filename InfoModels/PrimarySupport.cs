@@ -11,6 +11,9 @@ namespace Friable_mongo.InfoModels
 
         public string? Based { get; set; }
 
+        public string? Attachment { get; set; }
+
+
         [NotMapped] 
         public List<string>? Material { get; set; }
 
@@ -38,7 +41,15 @@ namespace Friable_mongo.InfoModels
         [MaxLength]
         public string? RemarksDescription { get; set; }
         public string? GeneralCondition { get; set; }
-        public string? Surface { get; set; }
+
+        [NotMapped]
+        public List<string>? Surface { get; set; }
+
+        public string? SurfaceSerialized
+        {
+            get => JsonConvert.SerializeObject(Surface);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(value);
+        }
 
         [NotMapped]
         public List<string>? Damage { get; set; }
