@@ -41,6 +41,12 @@ namespace Friable_mongo.Services
             }
         }
         public async Task UpdateAsync(string id, Manifest updatedBook) => await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, updatedBook);
+
+        public async Task DeletePictureAsync(string id, int index){
+            var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+            manifest.Items.RemoveAt(index);
+            await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest); }
+
         public async Task RemoveAsync(string id) => await _manifestsCollection.DeleteOneAsync(x => x.Id == id);
         public async Task AddManifestDTO(AddManifestDTO man)
         {
@@ -244,5 +250,73 @@ namespace Friable_mongo.Services
             }
             await _manifestsCollection.InsertOneAsync(manifest);
         }
+
+        public async Task AddPictureToManifestDTO(AddPictureToMAnifestDTO man, string id)
+        {
+            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
+            var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+           
+                manifest.Items.Add(new Canvas()
+                {
+                    Label =  manifest.Label,
+                    
+                    Id = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
+                    Type = "Canvas",
+                    Height = man.Height,
+                    Width = man.Width,
+                    Annotations = new List<AnnotationsTarget> {
+                  new AnnotationsTarget() {
+                    Id = url + manifest.Id + "/page/p2/1",
+                      Type = "AnnotationPage",
+                      Items = new List < AnnotationTarget > {
+                        new AnnotationTarget() {
+                          Id = Guid.NewGuid().ToString(),
+                            Type = "Annotation",
+                            Motivation = "commenting",
+                            Body = new Body() {
+                              Type = "TextualBody",
+                                Format = "text/plain",
+                                Value = "First annotation"
+                            },
+                            Target = new Target() {
+                              Type = "SpecificResource",
+                                Source = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
+                            }
+
+                        }
+                      }
+                  }
+                },
+                    Items = new List<AnnotationPage> {
+                  new AnnotationPage() {
+                    Id = url + manifest.Id + "/page/p1/1",
+                      Type = "AnnotationPage",
+                      Items = new List < Annotation > () {
+                        new Annotation() {
+                          Id = url + manifest.Id + "/annotation/p000" + (manifest.Items.Count + 1) + "-image",
+                            Motivation = "painting",
+                            Type = "Annotation",
+                            Body = new Body() {
+                              Id = man.ImageLink + "/full/max/0/default.jpg",
+                                Type = "Image",
+                                Format = "image/jpeg",
+                                Service = new List < Service > () {
+                                  new Service() {
+                                    Id = man.ImageLink,
+                                      Profile = "level1",
+                                      Type = "ImageService3",
+                                  }
+                                },
+                            },
+
+                            Target = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
+                            }
+                        }
+                      }
+                  }
+                });
+            await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest);
+        }
+
     }
 };

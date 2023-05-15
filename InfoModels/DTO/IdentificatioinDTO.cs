@@ -11,6 +11,9 @@ namespace Friable_mongo.InfoModels.DTO
         public virtual ArtistDTO? Artist { get; set; }
         public string? TitleDutch { get; set; }
         public string? TitleFrench { get; set; }
+
+        public string? CollectionMarkAccessible { get; set; }
+
         public virtual DateDTO? Date { get; set; }
         public virtual SignatureDTO? Signature { get; set; }
         public virtual ICollection<InscriptionDTO>? Inscriptions { get; set; }
@@ -22,7 +25,14 @@ namespace Friable_mongo.InfoModels.DTO
         public string? Techniques { get; set; }
       
         public string? Support { get; set; }
-        public string? Framed { get; set; }
+
+        public List<string>? Framed { get; set; }
+
+        public string? FramedSerialized
+        {
+            get => JsonConvert.SerializeObject(Framed);
+            set => Framed = JsonConvert.DeserializeObject<List<string>>(FramedSerialized);
+        }
         public int? Top { get; set; }
         public int? Right { get; set; }
         public int? Bottom { get; set; }

@@ -9,6 +9,9 @@ namespace Friable_mongo.InfoModels
         [Key]
         public Guid Id { get; set; }
 
+        public string? SupportAccessible { get; set; }
+
+
         public string? Based { get; set; }
 
         public string? Attachment { get; set; }

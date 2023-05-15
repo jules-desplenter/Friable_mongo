@@ -7,6 +7,8 @@ namespace Friable_mongo.InfoModels.DTO
     public class SupportDTO
     {
         public Guid Id { get; set; }
+        public string? SupportAccessible { get; set; }
+
 
         public string? Based { get; set; }
 

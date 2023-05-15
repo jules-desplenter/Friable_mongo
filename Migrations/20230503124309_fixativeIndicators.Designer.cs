@@ -4,6 +4,7 @@ using Friable_mongo.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Friable_mongo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230503124309_fixativeIndicators")]
+    partial class fixativeIndicators
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,9 +285,6 @@ namespace Friable_mongo.Migrations
                     b.Property<int?>("Bottom")
                         .HasColumnType("int");
 
-                    b.Property<string>("CollectionMarkAccessible")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FramedSerialized")
                         .HasColumnType("nvarchar(max)");
 
@@ -299,9 +299,6 @@ namespace Friable_mongo.Migrations
 
                     b.Property<string>("Materials")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
 
                     b.Property<string>("RegistrationID")
                         .IsRequired()
@@ -430,9 +427,6 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("OtherMediaSerialized")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PictorialAccessible")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RemarksCondition")
                         .HasColumnType("nvarchar(max)");
 
@@ -517,9 +511,6 @@ namespace Friable_mongo.Migrations
                     b.Property<string>("RemarksDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SupportAccessible")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("SurfaceSerialized")
                         .HasColumnType("nvarchar(max)");
 
@@ -590,9 +581,6 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OtherMediaSerialized")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PictorialAccessible")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RemarksCondition")
@@ -677,9 +665,6 @@ namespace Friable_mongo.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RemarksDescription")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupportAccessible")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SurfaceSerialized")

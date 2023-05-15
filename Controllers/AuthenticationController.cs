@@ -14,7 +14,7 @@ namespace Friable_mongo.Controllers
         [HttpPost]
         public IActionResult Login([FromBody] LoginDTO dto)
         {
-            if (dto.UserName != "msk" || dto.Password != "friable")
+            if (dto.UserName != "kmskb" || dto.Password != "friable")
                 return Unauthorized();
 
             const string secretKey = "hierkomtnuietsgeheimwatwelcoolis";

@@ -64,6 +64,15 @@ namespace Friable_mongo.Controllers
             return Ok(newManifest);
         }
 
+        [HttpPost("AddPicture/{*id}")]
+        [Authorize]
+        public async Task<IActionResult> Addpicture(AddPictureToMAnifestDTO newManifest, string id)
+        {
+            await _manifestService.AddPictureToManifestDTO(newManifest, id);
+
+            return Ok(newManifest);
+        }
+
         [HttpPut("{*id}")]
         [Authorize]
         public async Task<IActionResult> Update(string id, Manifest updatedBook)
@@ -94,6 +103,15 @@ namespace Friable_mongo.Controllers
             }
 
             await _manifestService.RemoveAsync(id);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}/{index}")]
+        [Authorize]
+        public async Task<IActionResult> Delete(string id, int index)
+        {
+            await _manifestService.DeletePictureAsync(id,index);
 
             return NoContent();
         }

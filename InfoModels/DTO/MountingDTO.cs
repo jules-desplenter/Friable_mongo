@@ -28,7 +28,7 @@ namespace Friable_mongo.InfoModels.DTO
         public string? SurfaceSerialized
         {
             get => JsonConvert.SerializeObject(Surface);
-            set => Surface = JsonConvert.DeserializeObject<List<string>>(value);
+            set => Surface = JsonConvert.DeserializeObject<List<string>>(SurfaceSerialized);
         }
         public List<string>? Damage { get; set; }
 

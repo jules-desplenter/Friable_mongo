@@ -9,7 +9,7 @@ namespace Friable_mongo.InfoModels.DTO
 
         public string? Location { get; set; }
 
-        public int? LocationNumber { get; set; }
+        public string? LocationNumber { get; set; }
 
         public string? StorageType { get; set; }
 

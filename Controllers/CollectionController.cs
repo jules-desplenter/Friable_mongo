@@ -8,6 +8,7 @@ namespace Friable_mongo.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Authorize]
+
     public class CollectionController : ControllerBase
     {
         private readonly CollectionService _CollectionService;

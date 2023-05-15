@@ -8,6 +8,9 @@ namespace Friable_mongo.InfoModels.DTO
     {
         public Guid Id { get; set; }
 
+        public string? PictorialAccessible { get; set; }
+
+
         public List<string>? FriableMedia { get; set; }
 
         public string? FriableMediaSerialized
@@ -16,6 +19,8 @@ namespace Friable_mongo.InfoModels.DTO
             set => FriableMedia = JsonConvert.DeserializeObject<List<string>>(FriableMediaSerialized);
         }
         public string? Fixative { get; set; }
+
+        public string? FixativeIndicators { get; set; }
 
         public List<string>? OtherMedia { get; set; }
 

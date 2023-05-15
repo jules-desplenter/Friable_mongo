@@ -10,6 +10,8 @@ namespace Friable_mongo.InfoModels
         [Key]
         public Guid Id { get; set; }
 
+        public string? PictorialAccessible { get; set; }
+
         [NotMapped]
         public List<string>? FriableMedia { get; set; }
 
@@ -19,6 +21,8 @@ namespace Friable_mongo.InfoModels
             set => FriableMedia = JsonConvert.DeserializeObject<List<string>>(value);
         }
         public string? Fixative { get; set; }
+
+        public string? FixativeIndicators { get; set; }
 
         [NotMapped]
         public List<string>? OtherMedia { get; set; }
