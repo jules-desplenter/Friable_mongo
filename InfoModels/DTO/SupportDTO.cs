@@ -24,7 +24,14 @@ namespace Friable_mongo.InfoModels.DTO
 
         public string? PaperType1 { get; set; }
         public string? PaperType2 { get; set; }
-        public string? PaperType3 { get; set; }
+
+        public List<string>? PaperType3 { get; set; }
+
+        public string? PaperType3Serialized
+        {
+            get => JsonConvert.SerializeObject(PaperType3);
+            set => PaperType3 = JsonConvert.DeserializeObject<List<string>>(PaperType3Serialized);
+        }
 
         public string? Assemblage { get; set; }
         public string? RectoVerso { get; set; }

@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.Configure<FriableDatabaseSettings>(
-    builder.Configuration.GetSection("FriableDatabase"));
+    builder.Configuration.GetSection("FriableDatabaseDocker"));
 
 builder.Services.AddSingleton<ManifestService>();
 builder.Services.AddSingleton<CollectionService>();
@@ -18,7 +18,7 @@ builder.Services.AddTransient<IAzureStorage,AzureStorage>();
 builder.Services.AddTransient<IRegistrationRepository,RegistrationRepository>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("dockerconn")));
 
 builder.Services.AddAutoMapper(typeof(AutoMappingConfig));
 

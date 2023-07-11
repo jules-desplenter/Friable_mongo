@@ -18,7 +18,7 @@ namespace Friable_mongo.Services
         public async Task<List<Manifest>> GetAsync() => await _manifestsCollection.Find(_ => true).ToListAsync();
         public async Task<Manifest?> GetAsync(string id)
         {
-            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
+            string url = "https://friable.idlab.ugent.be/api/manifest/";
             var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
             manifest.Id = url + manifest.Id + "/manifest.json";
             return manifest;
@@ -42,15 +42,26 @@ namespace Friable_mongo.Services
         }
         public async Task UpdateAsync(string id, Manifest updatedBook) => await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, updatedBook);
 
-        public async Task DeletePictureAsync(string id, int index){
+        public async Task DeletePictureAsync(string id, int index)
+        {
             var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-            manifest.Items.RemoveAt(index);
-            await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest); }
+            List<int> indexes = new List<int>();
+            foreach (Canvas dink in manifest.Items)
+            {
+                string[] test = dink.Id.Split("/canvas/p");
+                if (Int32.Parse(test[test.Length - 1]) == index)
+                {
+                    manifest.Items.Remove(dink);
+                    break;
+                }
+            }
+            await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest);
+        }
 
         public async Task RemoveAsync(string id) => await _manifestsCollection.DeleteOneAsync(x => x.Id == id);
         public async Task AddManifestDTO(AddManifestDTO man)
         {
-            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
+            string url = "https://friable.idlab.ugent.be/api/manifest/";
             var manifest = new Manifest()
             {
                 Id = man.ObjectNumber,
@@ -149,7 +160,7 @@ namespace Friable_mongo.Services
 
         public async Task AddMultipleManifestDTO(AddMultipleManifestDTO man)
         {
-            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
+            string url = "https://friable.idlab.ugent.be/api/manifest/";
             var manifest = new Manifest()
             {
                 Id = man.ObjectNumber,
@@ -253,18 +264,23 @@ namespace Friable_mongo.Services
 
         public async Task AddPictureToManifestDTO(AddPictureToMAnifestDTO man, string id)
         {
-            string url = "https://friablemongo20230424170902.azurewebsites.net/api/manifest/";
+            string url = "https://friable.idlab.ugent.be/api/manifest/";
             var manifest = await _manifestsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
-           
-                manifest.Items.Add(new Canvas()
-                {
-                    Label =  manifest.Label,
-                    
-                    Id = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
-                    Type = "Canvas",
-                    Height = man.Height,
-                    Width = man.Width,
-                    Annotations = new List<AnnotationsTarget> {
+            List<int> indexes = new List<int>();
+            foreach (Canvas dink in manifest.Items)
+            {
+                string[] test = dink.Id.Split("/canvas/p");
+                indexes.Add(Int32.Parse(test[test.Length - 1]));
+            }
+            manifest.Items.Add(new Canvas()
+            {
+                Label = manifest.Label,
+
+                Id = url + manifest.Id + "/canvas/p" + (indexes.Max() + 1),
+                Type = "Canvas",
+                Height = man.Height,
+                Width = man.Width,
+                Annotations = new List<AnnotationsTarget> {
                   new AnnotationsTarget() {
                     Id = url + manifest.Id + "/page/p2/1",
                       Type = "AnnotationPage",
@@ -280,20 +296,20 @@ namespace Friable_mongo.Services
                             },
                             Target = new Target() {
                               Type = "SpecificResource",
-                                Source = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
+                                Source = url + manifest.Id + "/canvas/p" + (indexes.Max() + 1),
                             }
 
                         }
                       }
                   }
                 },
-                    Items = new List<AnnotationPage> {
+                Items = new List<AnnotationPage> {
                   new AnnotationPage() {
                     Id = url + manifest.Id + "/page/p1/1",
                       Type = "AnnotationPage",
                       Items = new List < Annotation > () {
                         new Annotation() {
-                          Id = url + manifest.Id + "/annotation/p000" + (manifest.Items.Count + 1) + "-image",
+                          Id = url + manifest.Id + "/annotation/p000" + (indexes.Max() + 1) + "-image",
                             Motivation = "painting",
                             Type = "Annotation",
                             Body = new Body() {
@@ -309,12 +325,12 @@ namespace Friable_mongo.Services
                                 },
                             },
 
-                            Target = url + manifest.Id + "/canvas/p" + (manifest.Items.Count + 1),
+                            Target = url + manifest.Id + "/canvas/p" + (indexes.Max() + 1),
                             }
                         }
                       }
                   }
-                });
+            });
             await _manifestsCollection.ReplaceOneAsync(x => x.Id == id, manifest);
         }
 
